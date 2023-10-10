@@ -6,24 +6,24 @@ use Illuminate\Http\Request;
 use App\Models\Sala;
 
 
-class salaController extends Controller
+class SalaController extends Controller
 {
   // Método para exibir a lista de salas
     public function index()
     {
         // Obtém todos as salas do banco de dados usando o model 'Sala'
-        $autores = Sala::all();
+        $salas = Sala::all();
         // Retorna a view 'sala.index' e passa as salas como um parâmetro
         return view('sala.index', compact('sala'));
         // compact -> Cria um array associativo.
     }
     
-    // Método para exibir o formulário de criação de autor
+    // Método para exibir o formulário de criação de salas
 
     public function create()
     {
         // Retorna a view 'sala.create'
-        return view('autores.create');
+        return view('salas.create');
     }
 
     // Método para armazenar os dados da nova sala no banco de dados
@@ -38,7 +38,7 @@ class salaController extends Controller
         // Salva a sala no banco de dados
         $sala->save();
         // Redireciona para a rota 'sala.index' após salvar
-        return redirect()->route('sala.create');
+        return redirect()->route('salas.create');
     }
 
     // Método para exibir os detalhes de uma sala específica
@@ -47,17 +47,17 @@ class salaController extends Controller
     {
         // Encontra uma sala no banco de dados com o ID fornecido
         $sala = Sala ::findOrFail($id);
-        // Retorna a view 'autores.show' e passa o autor como parâmetro
+        // Retorna a view 'sala.show' e passa o autor como parâmetro
         return view('sala.show', compact('sala'));
     }
 
-    // Método para exibir o formulário de edição de autor
+    // Método para exibir o formulário de edição de autor salas
 
     public function edit(string $id)
     {
         // Encontra uma sala no banco de dados com o ID fornecido
         $sala = Sala::findOrFail($id);
-        // Retorna a view 'sala.edit' e passa o autor como parâmetro
+        // Retorna a view 'sala.edit' e passa a sala como parâmetro
         return view('sala.edit', compact('sala'));
     }
 
